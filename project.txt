@@ -1,0 +1,8 @@
+5 activity (Main, Info, FragmentBarCodeGenerator, Preferiti, SavedBarCode)
+Database per comuni -> classe dao comuni (BONJON)
+Database per i CF da salvare (JACKBONAVENTURA)
+Classe calcola codice fiscale -> Main (BONJON)
+Classe con informazioni nostre -> Info (BONJON)
+Classe codice fiscale che scrive sul database -> FragmentBarCodeGenerator (JACKBONAVENTURA)
+Classe che chiama il database e la scrollview -> Preferiti (JACKBONAVENTURA)
+Classe che il database per prendere il codice fiscale salvato -> SavedBarCode (JACKBONAVENTURA)
