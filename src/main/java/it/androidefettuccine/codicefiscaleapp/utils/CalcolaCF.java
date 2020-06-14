@@ -19,7 +19,7 @@ public class CalcolaCF {
         this.anno = anno;
     }
 
-    /*La funzione vera e propria che calcoler‡ il codice fiscale*/
+    /*La funzione vera e propria che calcoler√† il codice fiscale*/
     public String calcola() {
         cognome = Parole.eliminaSpaziBianchi(cognome).toUpperCase();
         nome = Parole.eliminaSpaziBianchi(nome).toUpperCase();
@@ -38,14 +38,14 @@ public class CalcolaCF {
         /*Cognome*/
         for (int i = 0; i < cognome.length(); i++) {
             if (Parole.isVocale(cognome.charAt(i))) {
-                vocali_Cognome += cognome.charAt(i);
+                vocali_Cognome = vocali_Cognome + cognome.charAt(i);
             } else if (cognome.charAt(i) != ' ')
-                consonanti_Cognome += cognome.charAt(i);
+                consonanti_Cognome = consonanti_Cognome + cognome.charAt(i);
         }
         /*Nome*/
         for (int i = 0; i < nome.length(); i++) {
             if (Parole.isVocale(nome.charAt(i)))
-                vocali_Nome += nome.charAt(i);
+                vocali_Nome = vocali_Nome + nome.charAt(i);
             else if (nome.charAt(i) != ' ')
                 consonanti_Nome = consonanti_Nome + nome.charAt(i);
         }
@@ -100,8 +100,8 @@ public class CalcolaCF {
     }
 
     /*Si calcola il codice di data di nacita e di sesso, ultimr due cifre dell'anno, una lettera per il mese
-    il giorno di nascita: in caso di sesso femminile si aggiunge 40 per cui Ë chiaro che se si trova scritto, ad esempio,
-    52, non puÚ che trattarsi di una donna nata il 12 del mese*/
+    il giorno di nascita: in caso di sesso femminile si aggiunge 40 per cui √® chiaro che se si trova scritto, ad esempio,
+    52, non pu√≤ che trattarsi di una donna nata il 12 del mese*/
     private String calcolaCodDataNascitaSesso(int anno, int mese, int giorno, String sesso) {
         String codiceDataNascitaESesso;
         String codiceAnno;
@@ -181,9 +181,9 @@ public class CalcolaCF {
         return Integer.toString(anno).substring(2);
     }
 
-    /*Si calcola il carattere di controllo, Ë composto da 1 carattere e serve a verificare
-    la correttezza dei precedenti caratteri in fase di digitazione. Le modalit‡ di calcolo sono spiegate
-    nel D.M. n∞ 345 del 23/12/1976 (Articolo 7)*/
+    /*Si calcola il carattere di controllo, √® composto da 1 carattere e serve a verificare
+    la correttezza dei precedenti caratteri in fase di digitazione. Le modalit√† di calcolo sono spiegate
+    nel D.M. n¬∞ 345 del 23/12/1976 (Articolo 7)*/
     private String calcolaCharControl(String result) {
         String pari = Parole.getStringaPari(result);
         String dispari = Parole.getStringaDispari(result);
@@ -307,11 +307,11 @@ public class CalcolaCF {
             int numero = Character.getNumericValue(carattere);
 
             if (Character.isLetter(carattere)) {
-                //Se Ë una lettera
+                //Se √® una lettera
                 numero = carattere - 65;
                 risultato += numero;
             } else {
-                //Se Ë un numero
+                //Se √® un numero
                 risultato += numero;
             }
         }
