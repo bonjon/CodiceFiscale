@@ -68,7 +68,7 @@
         android:id="@+id/tvSex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/margin_top"
         android:layout_marginTop="@dimen/margin_top2"
         android:layout_marginEnd="@dimen/margin_top"
         android:hint="@string/sesso"
