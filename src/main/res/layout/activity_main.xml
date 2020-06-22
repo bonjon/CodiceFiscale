@@ -16,7 +16,6 @@
         android:hint="@string/luogo_di_nascita"
         android:imeOptions="actionNext"
         android:inputType="text"
-        android:textColorHint="#FFFFFF"
         android:backgroundTint="@color/btn_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,18 +31,18 @@
         android:layout_marginStart="@dimen/margin_top"
         android:layout_marginTop="@dimen/margin_top"
         android:layout_marginEnd="@dimen/margin_top"
+        android:backgroundTint="@color/btn_color"
         android:ems="10"
         android:hint="@string/nome"
         android:imeOptions="actionNext"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:backgroundTint="@color/btn_color"
         app:layout_constraintBottom_toTopOf="@+id/tvComuni"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:importantForAutofill="no" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/etCognome"
@@ -66,13 +65,14 @@
         android:importantForAutofill="no" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvSex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_top"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="@dimen/margin_top2"
         android:layout_marginEnd="@dimen/margin_top"
         android:hint="@string/sesso"
+        android:textAlignment="viewStart"
         android:textSize="@dimen/text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,7 +93,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/tvSex"
         app:layout_constraintVertical_bias="0.0">
 
         <RadioButton

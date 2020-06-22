@@ -19,7 +19,7 @@ public class CalcolaCF {
         this.anno = anno;
     }
 
-    /*La funzione vera e propria che calcoler√† il codice fiscale*/
+    /*La funzione vera e propria che calcoler‡ il codice fiscale*/
     public String calcola() {
         cognome = Parole.eliminaSpaziBianchi(cognome).toUpperCase();
         nome = Parole.eliminaSpaziBianchi(nome).toUpperCase();
@@ -64,12 +64,36 @@ public class CalcolaCF {
             return codCognome;
         }
         if (consonanti_Cognome.length() == 1) {
-            codCognome = codCognome + consonanti_Cognome.charAt(0) + vocali_Cognome.charAt(0) + vocali_Cognome.charAt(1);
-            return codCognome;
+            if(vocali_Cognome.length() >= 2){
+                codCognome = codCognome + consonanti_Cognome.charAt(0) + vocali_Cognome.charAt(0) + vocali_Cognome.charAt(1);
+                return codCognome;
+            }
+            /*Si gestiscono i casi in cui si hanno meno di 2 vocali, dunque si ricorre all'aggiunta di X a seconda delle
+            lettere rimanenti*/
+            if(vocali_Cognome.length() == 1){
+                codCognome = codCognome + consonanti_Cognome.charAt(0) + vocali_Cognome.charAt(0) + "X";
+                return codCognome;
+            }
+            else{
+                codCognome = codCognome + consonanti_Cognome.charAt(0) + "XX";
+                return codCognome;
+            }
         } else {
-            for (int i = 0; i < 3; i++)
-                codCognome = codCognome + vocali_Cognome.charAt(i);
-            return codCognome;
+            /*Caso in cui ho solo voccali*/
+            if(vocali_Cognome.length() >=3){
+                codCognome = codCognome + vocali_Cognome.charAt(0) + vocali_Cognome.charAt(1) + vocali_Cognome.charAt(2);
+                return codCognome;
+            }
+            /*Si gestiscono i casi in cui si hanno meno di 2 vocali, dunque si ricorre all'aggiunta di X a seconda delle
+            lettere rimanenti*/
+            if(vocali_Cognome.length() == 2){
+                codCognome = codCognome + vocali_Cognome.charAt(0) + vocali_Cognome.charAt(1) + "X";
+                return codCognome;
+            }
+            else{
+                codCognome = codCognome + vocali_Cognome.charAt(0) + "XX";
+                return codCognome;
+            }
         }
     }
 
@@ -90,18 +114,41 @@ public class CalcolaCF {
             return codNome;
         }
         if (consonanti_Nome.length() == 1) {
-            codNome = codNome + consonanti_Nome.charAt(0) + vocali_Nome.charAt(0) + vocali_Nome.charAt(1);
-            return codNome;
+            if(vocali_Nome.length() >= 2){
+                codNome = codNome + consonanti_Nome.charAt(0) + vocali_Nome.charAt(0) + vocali_Nome.charAt(1);
+                return codNome;
+            }
+            /*Si gestiscono i casi in cui si hanno meno di 2 vocali, dunque si ricorre all'aggiunta di X a seconda delle
+            lettere rimanenti*/
+            if(vocali_Nome.length() == 1){
+                codNome = codNome + consonanti_Nome.charAt(0) + vocali_Nome.charAt(0) + "X";
+                return codNome;
+            }
+            else{
+                codNome = codNome + consonanti_Nome.charAt(0) + "XX";
+                return codNome;
+            }
         } else {
-            for (int i = 0; i < 3; i++)
-                codNome = codNome + vocali_Nome.charAt(i);
-            return codNome;
+            /*Caso in cui ho solo vocali*/
+            if(vocali_Nome.length() >= 3){
+                codNome = codNome + vocali_Nome.charAt(0) + vocali_Nome.charAt(1) + vocali_Nome.charAt(2);
+                return codNome;
+            }
+            /*Si gestiscono i casi in cui si hanno meno di 2 vocali, dunque si ricorre all'aggiunta di X a seconda delle
+            lettere rimanenti*/
+            if(vocali_Nome.length() == 2){
+                codNome = codNome + vocali_Nome.charAt(0) + +vocali_Nome.charAt(1) + "X";
+                return codNome;
+            }
+            else{
+                codNome = codNome + vocali_Nome.charAt(0) + "XX";
+                return codNome;
+            }
         }
     }
 
     /*Si calcola il codice di data di nacita e di sesso, ultimr due cifre dell'anno, una lettera per il mese
-    il giorno di nascita: in caso di sesso femminile si aggiunge 40 per cui √® chiaro che se si trova scritto, ad esempio,
-    52, non pu√≤ che trattarsi di una donna nata il 12 del mese*/
+    il giorno di nascita: in caso di sesso femminile si aggiunge 40*/
     private String calcolaCodDataNascitaSesso(int anno, int mese, int giorno, String sesso) {
         String codiceDataNascitaESesso;
         String codiceAnno;
@@ -175,15 +222,13 @@ public class CalcolaCF {
         }
         return s;
     }
-
     /*Prendo le ultime due cifre dell'anno*/
     private String calcolaCodAnno(int anno) {
         return Integer.toString(anno).substring(2);
     }
-
-    /*Si calcola il carattere di controllo, √® composto da 1 carattere e serve a verificare
-    la correttezza dei precedenti caratteri in fase di digitazione. Le modalit√† di calcolo sono spiegate
-    nel D.M. n¬∞ 345 del 23/12/1976 (Articolo 7)*/
+    /*Si calcola il carattere di controllo, Ë composto da 1 carattere e serve a verificare
+    la correttezza dei precedenti caratteri in fase di digitazione. Le modalit‡ di calcolo sono spiegate
+    nel D.M. n∞ 345 del 23/12/1976 (Articolo 7)*/
     private String calcolaCharControl(String result) {
         String pari = Parole.getStringaPari(result);
         String dispari = Parole.getStringaDispari(result);
@@ -307,11 +352,11 @@ public class CalcolaCF {
             int numero = Character.getNumericValue(carattere);
 
             if (Character.isLetter(carattere)) {
-                //Se √® una lettera
+                //Se Ë una lettera
                 numero = carattere - 65;
                 risultato += numero;
             } else {
-                //Se √® un numero
+                //Se Ë un numero
                 risultato += numero;
             }
         }

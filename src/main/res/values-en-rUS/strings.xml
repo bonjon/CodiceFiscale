@@ -9,9 +9,9 @@
     <string name="nome">Name</string>
     <string name="luogo_di_nascita">Birth place</string>
     <string name="cognome">Surname</string>
-    <string name="sesso">Sex</string>
+    <string name="sesso">\ Sex</string>
     <string name="calcola">Calculate</string>
-    <string name="data_di_nascita">Birth date</string>
+    <string name="data_di_nascita">\ Birth date</string>
     <string name="m">M</string>
     <string name="f">F</string>
     <string name="noluogo">Birth place not inserted</string>
@@ -20,4 +20,5 @@
     <string name="nosesso">Sex not inserted</string>
     <string name="preferiti">Favourites</string>
     <string name="todo">TODO</string>
+    <string name="luogo_not_valid">Birth Place not valid</string>
 </resources>

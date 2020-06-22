@@ -17,7 +17,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,6 +30,7 @@ import it.androidefettuccine.codicefiscaleapp.database.Comune;
 import it.androidefettuccine.codicefiscaleapp.database.ComuniDatabase;
 import it.androidefettuccine.codicefiscaleapp.exceptions.CognomeNonInseritoException;
 import it.androidefettuccine.codicefiscaleapp.exceptions.ComuneNonInseritoException;
+import it.androidefettuccine.codicefiscaleapp.exceptions.ComuneNonValidoException;
 import it.androidefettuccine.codicefiscaleapp.exceptions.NomeNonInseritoException;
 import it.androidefettuccine.codicefiscaleapp.exceptions.SessoNonInseritoException;
 import it.androidefettuccine.codicefiscaleapp.utils.CalcolaCF;
@@ -46,17 +46,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        createDB();
+        db = ComuniDatabase.getInstance(MainActivity.this);
         populateDB();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, db.comuneDAO().loadNames());
         new Holder();
     }
-
-    /*Si crea il database con Room*/
-    private void createDB() {
-        db = Room.databaseBuilder(getApplicationContext(), ComuniDatabase.class, "comuni.db").allowMainThreadQueries().build();
-    }
-
     /*Si popola il db di comuni*/
     private void populateDB() {
         List<Comune> oldList = db.comuneDAO().getAll();
@@ -161,6 +155,12 @@ public class MainActivity extends AppCompatActivity {
                     codCat = db.comuneDAO().getCode(comune);
                     nome = etNome.getText().toString();
                     cognome = etCognome.getText().toString();
+                    /*Caso in cui il comune non è valido*/
+                    if(db.comuneDAO().getName(comune) == null){
+                        tvComuni.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                        tvComuni.setError(getString(R.string.luogo_not_valid));
+                        throw new ComuneNonValidoException(getString(R.string.luogo_not_valid));
+                    }
                     /*Si gestisce il caso in cui non si inserisca alcun comune*/
                     if (comune == null || comune.equals("")) {
                         tvComuni.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
@@ -194,6 +194,9 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println(value);
                     Toast.makeText(MainActivity.this, value, Toast.LENGTH_LONG).show();
                     clearText();
+                } catch(ComuneNonValidoException e){
+                    e.printStackTrace();
+                    Toast.makeText(MainActivity.this,getString(R.string.luogo_not_valid),Toast.LENGTH_LONG).show();
                 } catch (ComuneNonInseritoException e) {
                     e.printStackTrace();
                     Toast.makeText(MainActivity.this, getString(R.string.noluogo), Toast.LENGTH_LONG).show();
