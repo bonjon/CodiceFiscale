@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_top">8dp</dimen>
+    <dimen name="margin_top2">16dp</dimen>
+    <dimen name="text_size">18sp</dimen>
+    <dimen name="radioM">139dp</dimen>
+    <dimen name="logo_dim">300dp</dimen>
+    <dimen name="noi_sizetext">24sp</dimen>
+    <dimen name="nomi_width">386dp</dimen>
+    <dimen name="nomi_height">98dp</dimen>
+    <dimen name="nomi_textsize">20sp</dimen>
+    <dimen name="mail_width">386dp</dimen>
+    <dimen name="mail_height">53dp</dimen>
+</resources>
