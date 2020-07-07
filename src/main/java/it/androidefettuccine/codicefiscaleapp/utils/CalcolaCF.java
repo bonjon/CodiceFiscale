@@ -1,5 +1,8 @@
 package it.androidefettuccine.codicefiscaleapp.utils;
 
+
+import java.text.Normalizer;
+
 /*Classe che permette di calcolare il codice fiscale*/
 public class CalcolaCF {
     private String nome, cognome, sesso, codCat;
@@ -22,7 +25,11 @@ public class CalcolaCF {
     /*La funzione vera e propria che calcolerà il codice fiscale*/
     public String calcola() {
         cognome = Parole.eliminaSpaziBianchi(cognome).toUpperCase();
+        cognome = Normalizer.normalize(cognome, Normalizer.Form.NFD);
+        cognome = cognome.replaceAll("[^\\p{ASCII}]","");
         nome = Parole.eliminaSpaziBianchi(nome).toUpperCase();
+        nome = Normalizer.normalize(nome, Normalizer.Form.NFD);
+        nome = nome.replaceAll("[^\\p{ASCII}]","");
         popolazioneStringheConsVoc();
         String codCognome = this.calcolaCodCognome();
         String codNome = this.calcolaCodNome();
